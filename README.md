@@ -1,16 +1,21 @@
 # chess_aah
 
-A new Flutter project.
+A project made with colaboration with 
 
-## Getting Started
+Ankit Yadav -ML Part
+Harshvardhan Singh Shekhawat - Front End
+Aditya Kaushal -Backend
 
-This project is a starting point for a Flutter application.
+This project will give the solution for the offline chess community , as they can play games in realtime over theboard but noone in magnus carlson to and cant remember the postions after game but what this app will do is include machile learning and use your camara to converte live fottage into live pgn which then will be recored on our database and the game could be seen again anytime , anywhere
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+first version of app will be rather simple and we would just focus on making it functional and then improve further 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+these UI images is what we are planing to do in longterm 
+
+
+![landingpage](https://github.com/shekhawat-harsh/chess_aah/assets/120274885/dd6af3a8-4f7d-4ad5-98f7-4869d86012a9)
+![Home](https://github.com/shekhawat-harsh/chess_aah/assets/120274885/410d8651-1c9c-42b4-af46-ec50b6428df6)
+![spectate](https://github.com/shekhawat-harsh/chess_aah/assets/120274885/738da64b-eec4-4749-8f27-e4598f2cfac3)
+![game_page](https://github.com/shekhawat-harsh/chess_aah/assets/120274885/6e1423a5-fc54-44ee-a013-1e4b8d928204)
+![create_game](https://github.com/shekhawat-harsh/chess_aah/assets/120274885/21ebf5ee-4f3c-40f7-8548-a68c1ca0e24f)
