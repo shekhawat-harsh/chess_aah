@@ -6,7 +6,17 @@ class SpectatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("")),
-    );
+        appBar: AppBar(
+          title: Text("Home"),
+          actions: [
+            CircleAvatar(
+              backgroundColor: Colors.amber,
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [Text("data")],
+        )));
   }
 }

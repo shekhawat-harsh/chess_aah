@@ -1,4 +1,6 @@
+import 'package:chess_aah/main.dart';
 import 'package:chess_aah/provider.dart';
+import 'package:chess_aah/spectate.dart';
 import 'package:chess_aah/widgits/past_match_card.dart';
 import 'package:chess_aah/widgits/win_percentage_widgit.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -6,15 +8,15 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+double? Scwidth;
+
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(screenWidthProvider.notifier).state =
-        MediaQuery.of(context).size.width;
+    Scwidth = MediaQuery.of(context).size.width;
     var dataBaseSnapshot = FirebaseDatabase.instance;
-    var width = MediaQuery.of(context).size.width;
     final email = ref.read(emailProvider);
     var userNameSnapshot = FirebaseDatabase.instance
         .ref("usernames")
@@ -31,7 +33,10 @@ class HomePage extends ConsumerWidget {
                   color: Colors.blue,
                   icon: Icon(Icons.home_filled)),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (ctx) => SpectatePage()));
+                  },
                   icon: Icon(
                     Icons.play_arrow,
                   )),
@@ -50,7 +55,7 @@ class HomePage extends ConsumerWidget {
         child: Column(
           children: [
             SizedBox(
-              width: width,
+              width: Scwidth,
               height: 150,
               child: FirebaseAnimatedList(
                   query: userNameSnapshot,
@@ -111,7 +116,7 @@ class HomePage extends ConsumerWidget {
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
             ),
             SizedBox(
-              width: width,
+              width: Scwidth,
               height: 350,
               child: FirebaseAnimatedList(
                   defaultChild: CircularProgressIndicator(),
