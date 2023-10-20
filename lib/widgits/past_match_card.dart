@@ -42,7 +42,7 @@ class PastMatchMatchCard extends ConsumerWidget {
                     style: TextStyle(
                         color: result == "lsot" ? Colors.red : Colors.green),
                   ),
-                  SizedBox(width: width * 0.55),
+                  SizedBox(width: 8),
                   Text(
                     moves,
                     style: TextStyle(

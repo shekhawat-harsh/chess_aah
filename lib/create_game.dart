@@ -1,15 +1,15 @@
-import 'package:chess_aah/create_game.dart';
 import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/spectate.dart';
 import 'package:flutter/material.dart';
 
-class SpectatePage extends StatelessWidget {
-  const SpectatePage({super.key});
+class CreateGame extends StatelessWidget {
+  const CreateGame({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Spactate"),
+          title: Text("Create Game"),
           actions: [
             CircleAvatar(
               backgroundColor: Colors.amber,
@@ -29,22 +29,20 @@ class SpectatePage extends StatelessWidget {
                     },
                     icon: Icon(Icons.home_filled)),
                 IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.play_arrow,
-                      color: Colors.blue,
-                    )),
-                IconButton(
                     onPressed: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (ctx) => CreateGame()));
+                          MaterialPageRoute(builder: (ctx) => SpectatePage()));
                     },
-                    icon: Icon(Icons.add))
+                    icon: Icon(
+                      Icons.play_arrow,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.blue,
+                    ))
               ],
-            )),
-        body: SingleChildScrollView(
-            child: Column(
-          children: [Text("data")],
-        )));
+            )));
   }
 }

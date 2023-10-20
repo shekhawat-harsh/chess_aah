@@ -1,3 +1,4 @@
+import 'package:chess_aah/create_game.dart';
 import 'package:chess_aah/main.dart';
 import 'package:chess_aah/provider.dart';
 import 'package:chess_aah/spectate.dart';
@@ -12,7 +13,6 @@ double? Scwidth;
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Scwidth = MediaQuery.of(context).size.width;
@@ -40,7 +40,12 @@ class HomePage extends ConsumerWidget {
                   icon: Icon(
                     Icons.play_arrow,
                   )),
-              IconButton(onPressed: () {}, icon: Icon(Icons.add))
+              IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (ctx) => CreateGame()));
+                  },
+                  icon: Icon(Icons.add))
             ],
           )),
       appBar: AppBar(
@@ -119,7 +124,6 @@ class HomePage extends ConsumerWidget {
               width: Scwidth,
               height: 350,
               child: FirebaseAnimatedList(
-                  defaultChild: CircularProgressIndicator(),
                   scrollDirection: Axis.vertical,
                   query: dataBaseSnapshot
                       .ref("recent_matches")
@@ -158,16 +162,17 @@ class HomePage extends ConsumerWidget {
                                 .child("won")
                                 .value
                                 .toString();
+
+                            return PastMatchMatchCard(
+                                opponent: opponent,
+                                moves: moves,
+                                result: result,
+                                tdraw: tDraw!,
+                                tlsot: tLost!,
+                                twon: tWon!);
+                          } else {
+                            return CircularProgressIndicator();
                           }
-                          print(
-                              "${snapShot.data!.snapshot.child("won").value} is data");
-                          return PastMatchMatchCard(
-                              opponent: opponent,
-                              moves: moves,
-                              result: result,
-                              tdraw: tDraw!,
-                              tlsot: tLost!,
-                              twon: tWon!);
                         });
                   }),
             )
