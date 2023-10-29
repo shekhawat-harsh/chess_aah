@@ -1,5 +1,7 @@
 import 'package:chess_aah/create_game.dart';
 import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/widgits/friends.dart';
+import 'package:chess_aah/widgits/search.dart';
 import 'package:flutter/material.dart';
 
 class SpectatePage extends StatelessWidget {
@@ -44,7 +46,7 @@ class SpectatePage extends StatelessWidget {
             )),
         body: SingleChildScrollView(
             child: Column(
-          children: [Text("data")],
+          children: [SearchWidgit(), FriendsWidgit()],
         )));
   }
 }

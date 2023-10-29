@@ -1,7 +1,6 @@
 import 'package:chess_aah/sign_in_page.dart';
 import 'package:chess_aah/sign_up_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

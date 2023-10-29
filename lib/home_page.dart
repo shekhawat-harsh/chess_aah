@@ -1,5 +1,4 @@
 import 'package:chess_aah/create_game.dart';
-import 'package:chess_aah/main.dart';
 import 'package:chess_aah/provider.dart';
 import 'package:chess_aah/spectate.dart';
 import 'package:chess_aah/widgits/past_match_card.dart';
@@ -167,9 +166,9 @@ class HomePage extends ConsumerWidget {
                                 opponent: opponent,
                                 moves: moves,
                                 result: result,
-                                tdraw: tDraw!,
-                                tlsot: tLost!,
-                                twon: tWon!);
+                                tdraw: tDraw,
+                                tlsot: tLost,
+                                twon: tWon);
                           } else {
                             return CircularProgressIndicator();
                           }

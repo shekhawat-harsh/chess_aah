@@ -22,7 +22,7 @@ class PastMatchMatchCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     double width = ref.read(screenWidthProvider);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(bottom: 8, top: 50, left: 8, right: 8),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -102,18 +102,6 @@ class PastMatchMatchCard extends ConsumerWidget {
                   )
                 ],
               ),
-              Container(
-                margin: EdgeInsets.all(8),
-                width: width / 3,
-                child: LinearProgressIndicator(
-                  backgroundColor: Colors.grey,
-                  color: Colors.blue,
-                  value: double.parse(twon) /
-                      (double.parse(twon) +
-                          double.parse(tdraw) +
-                          double.parse(tlsot)),
-                ),
-              )
             ],
           ),
         ),
