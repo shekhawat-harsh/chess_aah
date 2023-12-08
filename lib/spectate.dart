@@ -20,7 +20,7 @@ class SpectatePage extends StatelessWidget {
         ),
         bottomNavigationBar: BottomAppBar(
             notchMargin: 20,
-            height: 50,
+            height: 80,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

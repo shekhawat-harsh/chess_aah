@@ -1,12 +1,26 @@
+import 'dart:ffi';
+
+import 'package:chess_aah/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class FriendsWidgit extends StatelessWidget {
   FriendsWidgit({super.key});
   final firebaseDatabse = FirebaseDatabase.instance;
+
+  Future<String> FetchUsername(String mail) async {
+    var FirebaseSnapshot =
+        await firebaseDatabse.ref("usernames").child(mail).get();
+    String name = FirebaseSnapshot.child("user_name").value.toString();
+    return name;
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(email);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -14,9 +28,41 @@ class FriendsWidgit extends StatelessWidget {
           width: double.infinity,
           height: 300,
           child: FirebaseAnimatedList(
-            query: firebaseDatabse.ref("friends"),
+            query: firebaseDatabse
+                .ref("following")
+                .child(email!.replaceAll("@", "%").replaceAll(".", "^")),
             itemBuilder: (context, snapshot, animation, index) {
-              return Text("data");
+              String mail = snapshot.key.toString();
+
+              print(mail);
+              var snp = firebaseDatabse.ref("usernames").child(mail).get();
+              return FutureBuilder(
+                  future: FetchUsername(mail),
+                  builder: (ctx, snap) {
+                    if (snap.hasData || snap.data != null) {
+                      print(snap.data);
+                      return Card(
+                          child: ListTile(
+                        trailing: IconButton(
+                            icon: Icon(
+                              Icons.remove_red_eye_sharp,
+                              color: Color.fromARGB(118, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              //still to do
+                            }),
+                        title: Text(snap.data.toString()),
+                        leading: CircleAvatar(backgroundColor: Colors.blue),
+                        subtitle: Text(
+                            mail.replaceAll("%", "@").replaceAll("^", "."),
+                            style: TextStyle(
+                                color:
+                                    const Color.fromARGB(78, 255, 255, 255))),
+                      ));
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  });
             },
           ),
         ),

@@ -23,7 +23,7 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
           notchMargin: 20,
-          height: 50,
+          height: 80,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -89,25 +89,40 @@ class HomePage extends ConsumerWidget {
                     .onValue,
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
-                    double ovrWin = double.parse(snapshot.data!.snapshot
-                            .child("overall/win")
-                            .value
-                            .toString()) /
-                        100;
-                    final blackWin = double.parse(snapshot.data!.snapshot
-                            .child("black/win")
-                            .value
-                            .toString()) /
-                        100;
-                    final whiteWin = double.parse(snapshot.data!.snapshot
-                            .child("white/win")
-                            .value
-                            .toString()) /
-                        100;
-                    return WinPercentage(
-                        blackWin: blackWin,
-                        overallWin: ovrWin,
-                        whiteWin: whiteWin);
+                    try {
+                      double ovrWin = double.parse(snapshot.data!.snapshot
+                              .child("overall/win")
+                              .value
+                              .toString()) /
+                          100;
+                      final blackWin = double.parse(snapshot.data!.snapshot
+                              .child("black/win")
+                              .value
+                              .toString()) /
+                          100;
+                      final whiteWin = double.parse(snapshot.data!.snapshot
+                              .child("white/win")
+                              .value
+                              .toString()) /
+                          100;
+                      return WinPercentage(
+                          blackWin: blackWin,
+                          overallWin: ovrWin,
+                          whiteWin: whiteWin);
+                    } catch (e) {
+                      return Container(
+                          width: double.infinity,
+                          height: 200,
+                          child: Center(
+                              child: Text(
+                            "Not enough  matches yet ",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontStyle: FontStyle.italic,
+                                color:
+                                    const Color.fromARGB(120, 255, 255, 255)),
+                          )));
+                    }
                   } else {
                     return CircularProgressIndicator();
                   }

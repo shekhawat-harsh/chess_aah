@@ -1,4 +1,5 @@
 import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/main.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _SearchWidgitState extends State<SearchWidgit> {
           ElevatedButton(
               onPressed: () {
                 setState(() {
-                  searchedString = TextController.text;
+                  searchedString = TextController.text.trim();
                   print(searchedString);
                 });
               },
@@ -76,7 +77,16 @@ class _SearchWidgitState extends State<SearchWidgit> {
                           return ListTile(
                             trailing: IconButton(
                               icon: Icon(Icons.add_circle, color: Colors.green),
-                              onPressed: () {},
+                              onPressed: () async {
+                                await FirebaseDatabase.instance
+                                    .ref("following")
+                                    .child(email
+                                        .toString()
+                                        .replaceAll(".", "^")
+                                        .replaceAll('@', "%"))
+                                    .child(snapshot.key.toString())
+                                    .set("active");
+                              },
                             ),
                             subtitle: Text(
                               snapshot.key

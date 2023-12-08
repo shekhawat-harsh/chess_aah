@@ -1,4 +1,5 @@
 import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/main.dart';
 import 'package:chess_aah/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,7 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String? email;
-    String? password;
+    
     final firebaseAuth = FirebaseAuth.instance;
     return Scaffold(
       body: Center(
