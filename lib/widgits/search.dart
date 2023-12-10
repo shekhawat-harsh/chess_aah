@@ -1,4 +1,4 @@
-import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/screens/home_page.dart';
 import 'package:chess_aah/main.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';

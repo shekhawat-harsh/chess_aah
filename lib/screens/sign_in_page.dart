@@ -1,15 +1,23 @@
-import 'package:chess_aah/home_page.dart';
+import 'package:chess_aah/screen_binder.dart';
+import 'package:chess_aah/screens/create_game.dart';
+import 'package:chess_aah/screens/home_page.dart';
 import 'package:chess_aah/main.dart';
+import 'package:chess_aah/screens/spectate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends ConsumerWidget {
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final firebaseAuth = FirebaseAuth.instance;
     return Scaffold(
       body: Center(
@@ -71,24 +79,33 @@ class LoginScreen extends ConsumerWidget {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
+                      loading = true;
+                      setState(() {});
 
-                      firebaseAuth
-                          .signInWithEmailAndPassword(
-                              email: email!.trim(), password: password!.trim())
-                          .then((value) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (ctx) => HomePage()));
-                      }).onError((error, stackTrace) {
-                        var snackBar =
-                            SnackBar(content: Text(error.toString()));
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      });
+                      try {
+                        await firebaseAuth.signInWithEmailAndPassword(
+                            email: email!.trim(), password: password!.trim());
+                        screenHome = HomePage();
+                        screenSpectate = SpectatePage();
+                        screenCreateGame = CreateGame();
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (ctx) => ScreenBinder()));
+                        loading = false;
+                      } catch (e) {
+                        var messege = SnackBar(content: Text("error : $e"));
+                        ScaffoldMessenger.of(context).showSnackBar(messege);
+                        loading = false;
+                        setState(() {});
+                      }
                     }
                   },
-                  child: Text('Login'),
+                  child:
+                      loading ? CircularProgressIndicator() : Text("Log in "),
                 ),
               ],
             ),

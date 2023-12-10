@@ -1,4 +1,4 @@
-import 'package:chess_aah/widgits/camara_screen.dart';
+import 'package:chess_aah/screens/camara_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +21,13 @@ class _GameFormState extends State<GameForm> {
         children: [
           TextField(
             controller: emailController1,
-            decoration: InputDecoration(labelText: 'Player 1(wight) Email'),
+            decoration: InputDecoration(labelText: 'white player'),
           ),
           SizedBox(height: 16.0),
           TextField(
+            keyboardType: TextInputType.emailAddress,
             controller: emailController2,
-            decoration: InputDecoration(labelText: 'Player 2(black) Email'),
+            decoration: InputDecoration(labelText: 'black player'),
           ),
           SizedBox(height: 32.0),
           ElevatedButton(

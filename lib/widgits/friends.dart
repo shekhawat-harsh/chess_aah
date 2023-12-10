@@ -24,6 +24,7 @@ class FriendsWidgit extends StatelessWidget {
           width: double.infinity,
           height: 300,
           child: FirebaseAnimatedList(
+            physics: NeverScrollableScrollPhysics(),
             query: firebaseDatabse
                 .ref("following")
                 .child(email!.replaceAll("@", "%").replaceAll(".", "^")),

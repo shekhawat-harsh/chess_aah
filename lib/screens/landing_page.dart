@@ -1,5 +1,5 @@
-import 'package:chess_aah/sign_in_page.dart';
-import 'package:chess_aah/sign_up_page.dart';
+import 'package:chess_aah/screens/sign_in_page.dart';
+import 'package:chess_aah/screens/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class LandingPage extends StatefulWidget {

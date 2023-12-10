@@ -1,4 +1,4 @@
-import 'package:chess_aah/landing_page.dart';
+import 'package:chess_aah/screens/landing_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
