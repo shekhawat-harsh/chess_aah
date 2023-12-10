@@ -1,4 +1,3 @@
-import 'package:chess_aah/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +19,6 @@ class PastMatchMatchCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    double width = ref.read(screenWidthProvider);
     return Padding(
       padding: EdgeInsets.only(bottom: 8, top: 50, left: 8, right: 8),
       child: Card(

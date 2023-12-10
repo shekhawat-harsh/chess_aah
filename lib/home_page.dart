@@ -1,25 +1,23 @@
 import 'package:chess_aah/create_game.dart';
-import 'package:chess_aah/provider.dart';
+import 'package:chess_aah/main.dart';
 import 'package:chess_aah/spectate.dart';
 import 'package:chess_aah/widgits/past_match_card.dart';
 import 'package:chess_aah/widgits/win_percentage_widgit.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 double? Scwidth;
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     Scwidth = MediaQuery.of(context).size.width;
     var dataBaseSnapshot = FirebaseDatabase.instance;
-    final email = ref.read(emailProvider);
     var userNameSnapshot = FirebaseDatabase.instance
         .ref("usernames")
-        .child(email.replaceAll(".", "^").replaceAll("@", "%"));
+        .child(email!.replaceAll(".", "^").replaceAll("@", "%"));
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
           notchMargin: 20,
@@ -85,7 +83,7 @@ class HomePage extends ConsumerWidget {
             StreamBuilder(
                 stream: dataBaseSnapshot
                     .ref("win_percent")
-                    .child(email.replaceAll(".", "^").replaceAll("@", "%"))
+                    .child(email!.replaceAll(".", "^").replaceAll("@", "%"))
                     .onValue,
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
@@ -141,7 +139,7 @@ class HomePage extends ConsumerWidget {
                   scrollDirection: Axis.vertical,
                   query: dataBaseSnapshot
                       .ref("recent_matches")
-                      .child(email.replaceAll(".", "^").replaceAll("@", "%")),
+                      .child(email!.replaceAll(".", "^").replaceAll("@", "%")),
                   itemBuilder: (ctx, dataSnapshot, animation, index) {
                     var opponent = dataSnapshot.key
                         .toString()
@@ -151,7 +149,7 @@ class HomePage extends ConsumerWidget {
                     var moves = dataSnapshot.child("moves").value.toString();
                     var historySnapshot = dataBaseSnapshot
                         .ref("past_matches")
-                        .child(email.replaceAll(".", "^").replaceAll("@", "%"))
+                        .child(email!.replaceAll(".", "^").replaceAll("@", "%"))
                         .child(dataSnapshot.key!)
                         .once();
 

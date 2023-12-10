@@ -1,17 +1,18 @@
 import 'package:chess_aah/home_page.dart';
 import 'package:chess_aah/spectate.dart';
+import 'package:chess_aah/widgits/gameForm.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CreateGame extends StatelessWidget {
   const CreateGame({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var dataBaseRef = FirebaseDatabase.instance.ref("matches");
     return Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(8),
-          child: Column(children: [TextFormField()]),
+        body: Center(
+          child: GameForm(),
         ),
         appBar: AppBar(
           title: Text("Create Game"),
@@ -42,7 +43,7 @@ class CreateGame extends StatelessWidget {
                       Icons.play_arrow,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () async {},
                     icon: Icon(
                       Icons.add,
                       color: Colors.blue,

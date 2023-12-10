@@ -1,7 +1,7 @@
 import 'package:chess_aah/home_page.dart';
 import 'package:chess_aah/main.dart';
-import 'package:chess_aah/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +10,6 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final firebaseAuth = FirebaseAuth.instance;
     return Scaffold(
       body: Center(
@@ -75,11 +74,11 @@ class LoginScreen extends ConsumerWidget {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
+
                       firebaseAuth
                           .signInWithEmailAndPassword(
                               email: email!.trim(), password: password!.trim())
                           .then((value) {
-                        ref.read(emailProvider.notifier).state = email!.trim();
                         Navigator.push(context,
                             MaterialPageRoute(builder: (ctx) => HomePage()));
                       }).onError((error, stackTrace) {
