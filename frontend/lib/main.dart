@@ -22,6 +22,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(ProviderScope(
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LandingPage(),
       theme: ThemeData.dark(useMaterial3: true),
     ),

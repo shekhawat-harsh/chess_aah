@@ -1,3 +1,4 @@
+import 'package:chess_aah/screens/home_page.dart';
 import 'package:chess_aah/screens/sign_in_page.dart';
 import 'package:chess_aah/screens/sign_up_page.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,7 @@ class _LandingPageState extends State<LandingPage> {
 
     return Scaffold(
       body: Column(children: [
-        SizedBox(
-          height: 24,
-        ),
+        SizedBox(height: 100),
         Image(image: AssetImage("lib/assets/images/chess.png")),
         Text(
           "AAH!!",

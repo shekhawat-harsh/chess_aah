@@ -6,7 +6,7 @@ import 'package:chess_aah/screens/spectate.dart';
 import 'package:chess_aah/widgits/myBottomNevigationBar.dart';
 import 'package:chess_aah/widgits/past_match_card.dart';
 import 'package:chess_aah/widgits/win_percentage_widgit.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,5 @@
 import 'package:chess_aah/main.dart';
+import 'package:chess_aah/screens/profile.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +32,6 @@ class FriendsWidgit extends StatelessWidget {
             itemBuilder: (context, snapshot, animation, index) {
               String mail = snapshot.key.toString();
 
-              print(mail);
-              var snp = firebaseDatabse.ref("usernames").child(mail).get();
               return FutureBuilder(
                   future: FetchUsername(mail),
                   builder: (ctx, snap) {
@@ -46,7 +45,16 @@ class FriendsWidgit extends StatelessWidget {
                               color: Color.fromARGB(118, 255, 255, 255),
                             ),
                             onPressed: () {
-                              //still to do
+                              String name = snap.data.toString();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (ctx) => ProfilePage(
+                                            name: name,
+                                            mail: mail
+                                                .replaceAll("%", "@")
+                                                .replaceAll("^", "."),
+                                          )));
                             }),
                         title: Text(snap.data.toString()),
                         leading: CircleAvatar(backgroundColor: Colors.blue),
