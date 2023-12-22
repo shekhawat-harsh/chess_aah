@@ -2,8 +2,8 @@
 
 A project made with colaboration with 
 
-Ankit Yadav -ML Part
-Harshvardhan Singh Shekhawat - Front End
+Ankit Yadav -ML Part,
+Harshvardhan Singh Shekhawat - Frontend,
 Aditya Kaushal -Backend
 
 This project will give the solution for the offline chess community , as they can play games in realtime over theboard but noone in magnus carlson to and cant remember the postions after game but what this app will do is include machile learning and use your camara to converte live fottage into live pgn which then will be recored on our database and the game could be seen again anytime , anywhere
